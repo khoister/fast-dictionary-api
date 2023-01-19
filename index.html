@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Fast Dictionary API</title>
+        <script src="https://unpkg.com/htmx.org@1.8.4" integrity="sha384-wg5Y/JwF7VxGk4zLsJEcAojRtlVp1FKKdGy1qN+OMtdq72WRvX/EdRdqg/LOhYeV" crossorigin="anonymous"></script>
+        <script defer="defer" src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+        <script defer="defer" src="//unpkg.com/alpinejs"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"/>
+    </head>
+    <body>
+    </body>
+
+    <section class="section">
+        <div class="columns">
+            <div class="column is-2">
+                <p>
+                    This dictionary API is totally free to use for any purpose. If you find it useful, please consider donating to help cover server costs.
+                </p>
+                <a href="https://paypal.me/khoi" rel="nofollow">
+                    <img src="https://raw.githubusercontent.com/khoister/public_content/main/paypal-donate.png"
+                        alt="paypal"
+                        width="60%" height="60%"
+                    >
+                </a>
+                <hr>
+                <div class="content">
+                    <p>Sample app using the API:
+                        <a href="https://wordplay.khoister.io">Wordplay</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="content">
+                    <h3>Fast Dictionary API</h3>
+                </div>
+                <div class="box" x-data="{triggerUrl: '/ui/words'}">
+                    <div class="content">
+                        <p><strong>Usage:</strong></p>
+                        <p>
+                            The API returns definition(s) for a word in JSON format.<br><em>Source of definitions</em>:
+                            <a href="https://www.wiktionary.org">Wiktionary</a>
+                        </p>
+                    </div>
+                    <p><strong>Try it:</strong></p>
+                    <div class="field is-horizontal has-addons">
+                        <p class="control mr-0 py-2">
+                            <label class="label is-family-code has-text-weight-light">https://dictionary.khoister.io/api/words/</label>
+                        </p>
+                        <div class="control">
+                            <input class="input pl-1 is-family-code has-text-weight-light"
+                                name="search"
+                                type="text"
+                                placeholder="type a word..."
+                                x-bind:hx-get="triggerUrl"
+                                hx-trigger="keyup changed"
+                                hx-target="#json-block"
+                                hx-swap="innerHTML"
+                                x-effect="triggerUrl; htmx.process(document.body)"
+                            >
+                        </div>
+                    </div>
+                </div>
+<pre id="json-block"></pre>
+            </div>
+        </div>
+    </section>
+</html>
